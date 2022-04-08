@@ -31,4 +31,6 @@ public class Car {
 
     @Column(name = "year", nullable = false)
     private int year;
+
+
 }
