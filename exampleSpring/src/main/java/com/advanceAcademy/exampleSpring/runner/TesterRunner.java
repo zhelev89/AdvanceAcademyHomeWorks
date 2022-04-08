@@ -25,11 +25,6 @@ public class TesterRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Person person = new Person();
-        person.setFullName("Zhivko Zhelev");
-        person.setAge(32);
-        person.setUcn("1010101010");
-
         Car car = new Car();
         car.setBrand("BMW");
         car.setModel("i3");
@@ -44,8 +39,15 @@ public class TesterRunner implements CommandLineRunner {
         location.setPostCode("9000");
         location.setPhoneNumber("0899123123");
 
-        personRepository.save(person);
+        Person person = new Person();
+        person.setFullName("Zhivko Zhelev");
+        person.setAge(32);
+        person.setUcn("1010101010");
+        person.setCar(car);
+        person.setLocation(location);
+
         carRepository.save(car);
         locationRepository.save(location);
+        personRepository.save(person);
     }
 }

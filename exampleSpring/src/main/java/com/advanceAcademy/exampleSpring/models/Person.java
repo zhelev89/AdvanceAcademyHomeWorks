@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Data
@@ -30,4 +31,9 @@ public class Person {
     @Column(name = "ucn", length = 10, nullable = false)
     private String ucn;
 
+    @ManyToOne
+    private Car car;
+
+    @ManyToOne
+    private Location location;
 }
