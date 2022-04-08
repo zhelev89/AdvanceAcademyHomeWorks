@@ -1,5 +1,6 @@
 package com.advanceAcademy.exampleSpring.services;
 
+import com.advanceAcademy.exampleSpring.exceptions.PersonNotFoundException;
 import com.advanceAcademy.exampleSpring.models.Person;
 import com.advanceAcademy.exampleSpring.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,10 @@ public class PersonServices {
 
     public Person save(Person person) {
         return personRepository.save(person);
+    }
+
+    public Person findById(Long id) {
+        return personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException("Person with passed id does not exists."));
     }
 }

@@ -3,9 +3,7 @@ package com.advanceAcademy.exampleSpring.controllers;
 import com.advanceAcademy.exampleSpring.models.Person;
 import com.advanceAcademy.exampleSpring.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PersonController {
@@ -21,5 +19,10 @@ public class PersonController {
     public String save(@RequestBody Person person) {
         personServices.save(person);
         return "Person successfully save";
+    }
+
+    @GetMapping(value = "/person/find/{id}")
+    public Person findById(@PathVariable Long id) {
+        return personServices.findById(id);
     }
 }
