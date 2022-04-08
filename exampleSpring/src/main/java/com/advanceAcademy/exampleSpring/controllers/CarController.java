@@ -3,9 +3,7 @@ package com.advanceAcademy.exampleSpring.controllers;
 import com.advanceAcademy.exampleSpring.models.Car;
 import com.advanceAcademy.exampleSpring.services.CarServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CarController {
@@ -21,5 +19,10 @@ public class CarController {
     private String save(@RequestBody Car car) {
         carServices.save(car);
         return "Car successfully save";
+    }
+
+    @GetMapping(value = "/car/find/{id}")
+    private Car findById(@PathVariable Long id) {
+        return carServices.findById(id);
     }
 }

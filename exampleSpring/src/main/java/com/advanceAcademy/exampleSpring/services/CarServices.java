@@ -20,4 +20,8 @@ public class CarServices {
     public Car save(Car car) {
         return carRepository.save(car);
     }
+
+    public Car findById(Long id) {
+        return carRepository.findById(id).orElse(new Car());
+    }
 }
