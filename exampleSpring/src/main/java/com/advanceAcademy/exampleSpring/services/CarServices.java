@@ -4,8 +4,6 @@ import com.advanceAcademy.exampleSpring.models.Car;
 import com.advanceAcademy.exampleSpring.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class CarServices {

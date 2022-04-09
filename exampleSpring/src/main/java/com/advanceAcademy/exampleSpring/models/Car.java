@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -41,6 +42,6 @@ public class Car {
     @Column(name = "year", nullable = false)
     private int year;
 
-    @ManyToMany(mappedBy = "cars")
+    @ManyToMany(mappedBy = "cars", fetch = FetchType.LAZY)
     private Set<Person> persons;
 }

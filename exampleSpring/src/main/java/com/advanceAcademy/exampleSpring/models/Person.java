@@ -1,13 +1,12 @@
 package com.advanceAcademy.exampleSpring.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -36,10 +35,10 @@ public class Person {
     @ManyToOne
     private Location location;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "persons_cars",
-            joinColumns = @JoinColumn(name = "cars_id"),
-            inverseJoinColumns = @JoinColumn(name = "persons_id"))
+            joinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "id"))
     private Set<Car> cars;
 
 }

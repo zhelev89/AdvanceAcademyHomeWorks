@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import java.util.Arrays;
 
 @Component
 public class TesterRunner implements CommandLineRunner {
@@ -35,12 +33,7 @@ public class TesterRunner implements CommandLineRunner {
         location.setStreet("P.Slaveikov");
         location.setPostCode("9000");
         location.setPhoneNumber("0899123123");
-
-        Person person = new Person();
-        person.setFullName("Zhivko Zhelev");
-        person.setAge(32);
-        person.setUcn("1010101010");
-        person.setLocation(location);
+        Location savedLocation = locationRepository.save(location);
 
         Car car = new Car();
         car.setBrand("BMW");
@@ -55,11 +48,15 @@ public class TesterRunner implements CommandLineRunner {
         car2.setYear(2020);
         car2.setEngine("Diesel");
         car2.setHorsePower("600");
+        carRepository.saveAll(Arrays.asList(car, car2));
 
-
-        locationRepository.save(location);
+        Person person = new Person();
+        person.setFullName("Zhivko Zhelev");
+        person.setAge(32);
+        person.setUcn("1010101010");
+        person.setLocation(savedLocation);
         personRepository.save(person);
-        carRepository.save(car);
-        carRepository.save(car2);
+
+        //ок сега как да свържа колите към персоната при положение, че са manyToMany?
     }
 }
