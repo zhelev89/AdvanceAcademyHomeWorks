@@ -1,11 +1,15 @@
 package com.advanceAcademy.exampleSpring.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -37,5 +41,7 @@ public class Car {
     @NotNull
     @Column(name = "year", nullable = false)
     private int year;
-    
+
+    @ManyToMany(mappedBy = "cars", fetch = FetchType.LAZY)
+    private Set<Person> persons;
 }

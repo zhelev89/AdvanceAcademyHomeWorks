@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -32,8 +33,12 @@ public class Person {
     private String ucn;
 
     @ManyToOne
-    private Car car;
-
-    @ManyToOne
     private Location location;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "persons_cars",
+            joinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "id"))
+    private Set<Car> cars;
+
 }

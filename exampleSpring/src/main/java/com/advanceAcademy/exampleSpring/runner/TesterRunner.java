@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Component
 public class TesterRunner implements CommandLineRunner {
 
@@ -25,6 +27,14 @@ public class TesterRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        Location location = new Location();
+        location.setCountry("Bulgaria");
+        location.setTown("Varna");
+        location.setStreet("P.Slaveikov");
+        location.setPostCode("9000");
+        location.setPhoneNumber("0899123123");
+        Location savedLocation = locationRepository.save(location);
+
         Car car = new Car();
         car.setBrand("BMW");
         car.setModel("i3");
@@ -32,22 +42,21 @@ public class TesterRunner implements CommandLineRunner {
         car.setHorsePower("500");
         car.setYear(2021);
 
-        Location location = new Location();
-        location.setCountry("Bulgaria");
-        location.setTown("Varna");
-        location.setStreet("P.Slaveikov");
-        location.setPostCode("9000");
-        location.setPhoneNumber("0899123123");
+        Car car2 = new Car();
+        car2.setBrand("Audi");
+        car2.setModel("A8");
+        car2.setYear(2020);
+        car2.setEngine("Diesel");
+        car2.setHorsePower("600");
+        carRepository.saveAll(Arrays.asList(car, car2));
 
         Person person = new Person();
         person.setFullName("Zhivko Zhelev");
         person.setAge(32);
         person.setUcn("1010101010");
-        person.setCar(car);
-        person.setLocation(location);
-
-        carRepository.save(car);
-        locationRepository.save(location);
+        person.setLocation(savedLocation);
         personRepository.save(person);
+
+        //ок сега как да свържа колите към персоната при положение, че са manyToMany?
     }
 }
