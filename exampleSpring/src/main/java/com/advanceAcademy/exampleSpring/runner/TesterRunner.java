@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 @Component
 public class TesterRunner implements CommandLineRunner {
@@ -55,6 +56,9 @@ public class TesterRunner implements CommandLineRunner {
         person.setAge(32);
         person.setUcn("1010101010");
         person.setLocation(savedLocation);
+        person.setCars(new HashSet<>());
+        person.getCars().add(car);
+        person.getCars().add(car2);
         personRepository.save(person);
 
         //ок сега как да свържа колите към персоната при положение, че са manyToMany?
