@@ -62,5 +62,8 @@ public class TesterRunner implements CommandLineRunner {
         personRepository.save(person);
 
         //ок сега как да свържа колите към персоната при положение, че са manyToMany?
+        // в postman като пусна гет заявка да покажа Persona id-1 ми дава
+        // "status": 500,
+        // "error": "Internal Server Error",
     }
 }
