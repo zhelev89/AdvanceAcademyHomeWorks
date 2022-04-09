@@ -37,6 +37,4 @@ public class Location {
     @NotNull
     @Column(name = "phone_number", length = 20, nullable = false)
     private String phoneNumber;
-
-
 }

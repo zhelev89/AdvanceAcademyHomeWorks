@@ -1,11 +1,13 @@
 package com.advanceAcademy.exampleSpring.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,8 +34,12 @@ public class Person {
     private String ucn;
 
     @ManyToOne
-    private Car car;
-
-    @ManyToOne
     private Location location;
+
+    @ManyToMany
+    @JoinTable(name = "persons_cars",
+            joinColumns = @JoinColumn(name = "cars_id"),
+            inverseJoinColumns = @JoinColumn(name = "persons_id"))
+    private Set<Car> cars;
+
 }

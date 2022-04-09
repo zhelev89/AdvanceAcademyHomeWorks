@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+import java.util.Set;
+
+
 @Component
 public class TesterRunner implements CommandLineRunner {
 
@@ -25,13 +29,6 @@ public class TesterRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Car car = new Car();
-        car.setBrand("BMW");
-        car.setModel("i3");
-        car.setEngine("Electric");
-        car.setHorsePower("500");
-        car.setYear(2021);
-
         Location location = new Location();
         location.setCountry("Bulgaria");
         location.setTown("Varna");
@@ -43,11 +40,26 @@ public class TesterRunner implements CommandLineRunner {
         person.setFullName("Zhivko Zhelev");
         person.setAge(32);
         person.setUcn("1010101010");
-        person.setCar(car);
         person.setLocation(location);
 
-        carRepository.save(car);
+        Car car = new Car();
+        car.setBrand("BMW");
+        car.setModel("i3");
+        car.setEngine("Electric");
+        car.setHorsePower("500");
+        car.setYear(2021);
+
+        Car car2 = new Car();
+        car2.setBrand("Audi");
+        car2.setModel("A8");
+        car2.setYear(2020);
+        car2.setEngine("Diesel");
+        car2.setHorsePower("600");
+
+
         locationRepository.save(location);
         personRepository.save(person);
+        carRepository.save(car);
+        carRepository.save(car2);
     }
 }
