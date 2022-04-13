@@ -1,5 +1,6 @@
 package com.advanceAcademy.exampleSpring.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,13 +29,14 @@ public class Person {
     private int age;
 
     @NotNull
-    @Column(name = "ucn", length = 10, nullable = false)
+    @Column(name = "ucn", length = 10, nullable = false, unique = true)
     private String ucn;
 
     @ManyToOne
     private Location location;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
+    @JsonManagedReference
     @JoinTable(name = "persons_cars",
             joinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "id"))

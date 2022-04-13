@@ -2,18 +2,14 @@ package com.advanceAcademy.exampleSpring.controllers;
 
 import com.advanceAcademy.exampleSpring.models.Person;
 import com.advanceAcademy.exampleSpring.services.PersonServices;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@AllArgsConstructor
 public class PersonController {
 
     private PersonServices personServices;
-
-    @Autowired
-    public PersonController(PersonServices personServices) {
-        this.personServices = personServices;
-    }
 
     @PostMapping(value = "/person/save")
     public String save(@RequestBody Person person) {
