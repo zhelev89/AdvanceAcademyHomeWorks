@@ -33,5 +33,8 @@ public class TestRunner implements CommandLineRunner {
 
         Person updatedPerson = new Person(null, null, 0, null, car);
         personService.update(updatedPerson, person.getId());
+
+        Car carUpdated = new Car(null, null, "m3", 0);
+        carService.update(carUpdated, car.getId());
     }
 }

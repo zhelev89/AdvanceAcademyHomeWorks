@@ -22,15 +22,38 @@ public class CarService {
                         String.format("Car with id:%s, not found", id)));
     }
 
-    public Car find(String brand) {
+    public Car findByBrand(String brand) {
         return carRepository.findByBrand(brand)
                 .orElseThrow(() -> new NotFoundRecordException(
                         String.format("Car with brand: %s, not found", brand)));
     }
 
-    public Car find(int year) {
+    public Car findByYear(int year) {
         return carRepository.findByYear(year)
                 .orElseThrow(() -> new NotFoundRecordException(
                         String.format("Car with year: %s, not found", year)));
+    }
+
+    public Car update(Car updatedCar, Long id) {
+        Car car = find(id);
+        if (updatedCar.getBrand() == null) {
+            updatedCar.setBrand(car.getBrand());
+        }
+        if (updatedCar.getModel() == null) {
+            updatedCar.setModel(car.getModel());
+        }
+        if (updatedCar.getYear() == 0) {
+            updatedCar.setYear(car.getYear());
+        }
+
+        car.setBrand(updatedCar.getBrand());
+        car.setModel(updatedCar.getModel());
+        car.setYear(updatedCar.getYear());
+
+        return carRepository.save(car);
+    }
+
+    public void delete(Long id) {
+        carRepository.deleteById(id);
     }
 }
