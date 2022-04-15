@@ -42,6 +42,7 @@ public class Car {
     @Column(name = "year", nullable = false)
     private int year;
 
-    @ManyToMany(mappedBy = "cars", fetch = FetchType.LAZY)
+    @ManyToMany
+    @JsonBackReference
     private Set<Person> persons;
 }

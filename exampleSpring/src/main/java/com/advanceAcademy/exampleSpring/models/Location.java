@@ -19,22 +19,19 @@ public class Location {
     private Long id;
 
     @NotNull
-    @Column(name = "country", length = 50, nullable = false)
+    @Column(name = "country", length = 100, nullable = false)
     private String country;
 
     @NotNull
-    @Column(name = "town", length = 50, nullable = false)
+    @Column(name = "town", length = 100, nullable = false)
     private String town;
 
     @NotNull
-    @Column(name = "street", length = 50, nullable = false)
+    @Column(name = "street", length = 100, nullable = false)
     private String street;
 
     @NotNull
     @Column(name = "post_code", length = 20, nullable = false)
     private String postCode;
 
-    @NotNull
-    @Column(name = "phone_number", length = 20, nullable = false)
-    private String phoneNumber;
 }
