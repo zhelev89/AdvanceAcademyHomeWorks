@@ -16,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class PersonService {
 
-    private final PersonRepository personRepository;
+    private PersonRepository personRepository;
 
     public Person save(Person person) {
         try {
