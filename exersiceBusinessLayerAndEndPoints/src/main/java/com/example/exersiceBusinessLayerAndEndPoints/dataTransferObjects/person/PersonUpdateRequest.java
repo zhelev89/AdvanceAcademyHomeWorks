@@ -1,4 +1,4 @@
-package com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects;
+package com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.person;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

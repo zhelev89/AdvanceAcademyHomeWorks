@@ -1,9 +1,9 @@
 package com.example.exersiceBusinessLayerAndEndPoints.controllers;
 
 import com.example.exersiceBusinessLayerAndEndPoints.converters.PersonConverter;
-import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.PersonResponse;
-import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.PersonSaveRequest;
-import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.PersonUpdateRequest;
+import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.person.PersonResponse;
+import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.person.PersonSaveRequest;
+import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.person.PersonUpdateRequest;
 import com.example.exersiceBusinessLayerAndEndPoints.entities.Person;
 import com.example.exersiceBusinessLayerAndEndPoints.services.PersonService;
 import lombok.AllArgsConstructor;

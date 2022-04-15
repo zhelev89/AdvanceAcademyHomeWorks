@@ -6,6 +6,9 @@ import com.example.exersiceBusinessLayerAndEndPoints.repositories.CarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 @AllArgsConstructor
 public class CarService {
@@ -16,22 +19,14 @@ public class CarService {
         return carRepository.save(car);
     }
 
+    public Set<Car> findAll() {
+        return new HashSet<>(carRepository.findAll());
+    }
+
     public Car find(Long id) {
         return carRepository.findById(id)
                 .orElseThrow(() -> new NotFoundRecordException(
                         String.format("Car with id:%s, not found", id)));
-    }
-
-    public Car findByBrand(String brand) {
-        return carRepository.findByBrand(brand)
-                .orElseThrow(() -> new NotFoundRecordException(
-                        String.format("Car with brand: %s, not found", brand)));
-    }
-
-    public Car findByYear(int year) {
-        return carRepository.findByYear(year)
-                .orElseThrow(() -> new NotFoundRecordException(
-                        String.format("Car with year: %s, not found", year)));
     }
 
     public Car update(Car updatedCar, Long id) {
