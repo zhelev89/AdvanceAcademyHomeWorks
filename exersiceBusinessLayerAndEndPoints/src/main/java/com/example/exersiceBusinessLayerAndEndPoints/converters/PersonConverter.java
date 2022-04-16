@@ -1,7 +1,8 @@
 package com.example.exersiceBusinessLayerAndEndPoints.converters;
 
-import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.PersonResponse;
-import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.PersonSaveRequest;
+import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.person.PersonResponse;
+import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.person.PersonSaveRequest;
+import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.person.PersonUpdateRequest;
 import com.example.exersiceBusinessLayerAndEndPoints.entities.Person;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,15 @@ public class PersonConverter {
                 .fullName(person.getFullName())
                 .age(person.getAge())
                 .ucn(person.getUcn())
+                .build();
+    }
+
+    public Person convert(PersonUpdateRequest personUpdateRequest) {
+        return Person.builder()
+                .id(personUpdateRequest.getId())
+                .fullName(personUpdateRequest.getFullName())
+                .age(personUpdateRequest.getAge())
+                .ucn(personUpdateRequest.getUcn())
                 .build();
     }
 }

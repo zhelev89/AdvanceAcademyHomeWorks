@@ -1,6 +1,5 @@
 package com.example.exersiceBusinessLayerAndEndPoints.services;
 
-import com.example.exersiceBusinessLayerAndEndPoints.entities.Car;
 import com.example.exersiceBusinessLayerAndEndPoints.entities.Person;
 import com.example.exersiceBusinessLayerAndEndPoints.exceptions.DuplicateRecordException;
 import com.example.exersiceBusinessLayerAndEndPoints.exceptions.NotFoundRecordException;
@@ -9,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,11 +31,13 @@ public class PersonService {
     }
 
     public Person find(Long id) {
-        return personRepository.findById(id).orElseThrow(() -> new NotFoundRecordException(String.format("Person with id: %s, not found", id)));
+        return personRepository.findById(id)
+                .orElseThrow(() -> new NotFoundRecordException(String.format("Person with id: %s, not found", id)));
     }
 
-    public Person find(String fullName) {
-        return personRepository.findByFullName(fullName).orElseThrow(() -> new NotFoundRecordException(String.format("Person with fullName: %s, not found", fullName)));
+    public Person findByUcn(String ucn) {
+        return personRepository.findByUcn(ucn)
+                .orElseThrow(() -> new NotFoundRecordException(String.format("Person with ucn:%s, not found", ucn)));
     }
 
     public Person update(Person updatedPerson, Long id) {
@@ -58,5 +60,14 @@ public class PersonService {
         person.setUcn(updatedPerson.getUcn());
         person.setAge(updatedPerson.getAge());
         return personRepository.save(person);
+    }
+
+    public void delete(Long id) {
+        personRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void delete(String ucn) {
+        personRepository.deleteByUcn(ucn);
     }
 }
