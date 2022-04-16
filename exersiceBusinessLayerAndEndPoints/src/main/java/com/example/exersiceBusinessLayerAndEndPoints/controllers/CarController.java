@@ -3,6 +3,7 @@ package com.example.exersiceBusinessLayerAndEndPoints.controllers;
 import com.example.exersiceBusinessLayerAndEndPoints.converters.CarConverter;
 import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.car.CarResponse;
 import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.car.CarSaveRequest;
+import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.car.CarUpdateRequest;
 import com.example.exersiceBusinessLayerAndEndPoints.entities.Car;
 import com.example.exersiceBusinessLayerAndEndPoints.services.CarService;
 import lombok.AllArgsConstructor;
@@ -40,6 +41,21 @@ public class CarController {
     @GetMapping(value = "/id/{id}")
     public ResponseEntity<Car> findById(@PathVariable Long id) {
         return ResponseEntity.ok(carService.find(id));
+    }
+
+    @PutMapping
+    public ResponseEntity<CarResponse> update(@RequestBody CarUpdateRequest carUpdateRequest) {
+        Car car = carConverter.convert(carUpdateRequest);
+        Car updatedCar = carService.update(car, car.getId());
+        carService.save(updatedCar);
+        CarResponse carResponse = carConverter.convert(updatedCar);
+        return ResponseEntity.status(HttpStatus.CREATED).body(carResponse);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<HttpStatus> delete(@PathVariable Long id) {
+        carService.delete(id);
+        return ResponseEntity.ok().build();
     }
 
 }

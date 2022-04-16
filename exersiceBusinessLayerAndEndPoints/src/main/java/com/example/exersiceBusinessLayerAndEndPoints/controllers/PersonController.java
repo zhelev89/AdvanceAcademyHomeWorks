@@ -61,12 +61,14 @@ public class PersonController {
     }
 
     @DeleteMapping
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> delete(@PathVariable Long id) {
         personService.delete(id);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(value = "/ucn/{ucn}")
-    public void delete(@PathVariable String ucn) {
+    public ResponseEntity<HttpStatus> delete(@PathVariable String ucn) {
         personService.delete(ucn);
+        return ResponseEntity.ok().build();
     }
 }

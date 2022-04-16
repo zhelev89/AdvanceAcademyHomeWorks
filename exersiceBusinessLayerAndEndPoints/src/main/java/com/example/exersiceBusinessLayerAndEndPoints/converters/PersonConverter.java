@@ -25,7 +25,7 @@ public class PersonConverter {
                 .build();
     }
 
-    public Person convert (PersonUpdateRequest personUpdateRequest) {
+    public Person convert(PersonUpdateRequest personUpdateRequest) {
         return Person.builder()
                 .id(personUpdateRequest.getId())
                 .fullName(personUpdateRequest.getFullName())

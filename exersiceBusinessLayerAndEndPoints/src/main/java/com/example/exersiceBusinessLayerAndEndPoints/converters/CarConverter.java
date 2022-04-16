@@ -2,6 +2,7 @@ package com.example.exersiceBusinessLayerAndEndPoints.converters;
 
 import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.car.CarResponse;
 import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.car.CarSaveRequest;
+import com.example.exersiceBusinessLayerAndEndPoints.dataTransferObjects.car.CarUpdateRequest;
 import com.example.exersiceBusinessLayerAndEndPoints.entities.Car;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,15 @@ public class CarConverter {
                 .brand(car.getBrand())
                 .model(car.getModel())
                 .year(car.getYear())
+                .build();
+    }
+
+    public Car convert(CarUpdateRequest carUpdateRequest) {
+        return Car.builder()
+                .id(carUpdateRequest.getId())
+                .brand(carUpdateRequest.getBrand())
+                .model(carUpdateRequest.getModel())
+                .year(carUpdateRequest.getYear())
                 .build();
     }
 }
